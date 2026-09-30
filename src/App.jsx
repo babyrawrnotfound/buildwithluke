@@ -1,10 +1,4 @@
-const projects = [
-  {
-    name: 'ITSUITE',
-    description: 'Internal IT management suite built with PHP, with an automated staging deploy pipeline.',
-    link: 'https://github.com/babyrawrnotfound/ITSUITE',
-  },
-]
+const projects = []
 
 export default function App() {
   return (
