@@ -22,6 +22,14 @@ function Reveal({ children, as: Tag = 'div', className = '' }) {
   useEffect(() => {
     const el = ref.current
     if (!el) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const alreadyInView = el.getBoundingClientRect().top < window.innerHeight
+    if (reducedMotion || alreadyInView) {
+      setVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
