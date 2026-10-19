@@ -1,0 +1,57 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/var/www/buildwithluke.com' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          if [ -n "$KNOWN_HOSTS" ]; then
+            printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          else
+            ssh-keyscan -H "$VPS_HOST" > ~/.ssh/known_hosts
+          fi
+
+      - name: Upload site
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          SSH="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes"
+          $SSH "$VPS_USER@$VPS_HOST" "sudo mkdir -p '$DEPLOY_PATH'"
+          rsync -az --delete --rsync-path="sudo rsync" -e "$SSH" \
+            --chown=www-data:www-data --chmod=D755,F644 \
+            dist/ "$VPS_USER@$VPS_HOST:$DEPLOY_PATH/"
+
+      - name: Clean up key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
