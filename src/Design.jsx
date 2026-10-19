@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Icon, Phone } from './designKit.jsx'
+import { CoreLukeShowcase } from './CoreLuke.jsx'
 import { FivesflShowcase, FmdShowcase, ItsuiteMobileShowcase } from './DesignMore.jsx'
 import './Design.css'
 import './DesignMore.css'
@@ -658,7 +659,7 @@ function MobileShowcase() {
 /* ---------------------------------------------------------------- */
 
 export default function Design() {
-  const [view, setView] = useState('web')
+  const [view, setView] = useState('coreluke')
   const [toasts, setToasts] = useState([])
   const nextId = useRef(0)
 
@@ -671,6 +672,7 @@ export default function Design() {
   }
 
   const views = [
+    { id: 'coreluke', name: 'CoreLuke', kind: 'Design system' },
     { id: 'web', name: 'IT SUITE', kind: 'Web components' },
     { id: 'itsuite-mobile', name: 'IT SUITE', kind: 'Mobile app' },
     { id: 'fmd', name: 'Fleet', kind: 'Web dashboard' },
@@ -693,6 +695,7 @@ export default function Design() {
         ))}
       </div>
 
+      {view === 'coreluke' && <CoreLukeShowcase />}
       {view === 'web' && <WebShowcase toast={toast} />}
       {view === 'itsuite-mobile' && <ItsuiteMobileShowcase />}
       {view === 'fmd' && <FmdShowcase />}

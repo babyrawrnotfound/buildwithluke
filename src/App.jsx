@@ -220,13 +220,24 @@ function ProjectCard({ project, onOpen }) {
               <li key={tech}>{tech}</li>
             ))}
           </ul>
-          <button type="button" className="link-btn" onClick={() => onOpen(project.id)}>
-            Case study
-            <span className="sr-only">: {project.name}</span>
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
-            </svg>
-          </button>
+          <div className="card-actions">
+            {project.live && (
+              <a className="link-btn" href={project.live} target="_blank" rel="noreferrer">
+                Live site
+                <span className="sr-only"> (opens in a new tab)</span>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M6.5 3.5H3.5v9h9V9.5M8.5 3.5h4v4M12.2 3.8 7.2 8.8" />
+                </svg>
+              </a>
+            )}
+            <button type="button" className="link-btn" onClick={() => onOpen(project.id)}>
+              Case study
+              <span className="sr-only">: {project.name}</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </article>
@@ -285,6 +296,15 @@ function CaseStudy({ project, onClose, onPrev, onNext, position }) {
               </div>
               <h2 id="case-title">{project.name}</h2>
               <p className="dialog-tagline">{project.tagline}</p>
+              {project.live && (
+                <a className="dialog-live" href={project.live} target="_blank" rel="noreferrer">
+                  Open the live library
+                  <span className="sr-only"> (opens in a new tab)</span>
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M6.5 3.5H3.5v9h9V9.5M8.5 3.5h4v4M12.2 3.8 7.2 8.8" />
+                  </svg>
+                </a>
+              )}
             </div>
 
             <dl className="facts">
@@ -526,8 +546,8 @@ export default function App() {
                 <h2 id="work-title">Systems and apps I’ve built</h2>
               </div>
               <p className="section-note">
-                Most of this work is private client software, so each project is described as a
-                case study rather than linked to source.
+                Most of this work is private client software, so each project is a case study.
+                CoreLuke is public — the library is live at core.buildwithluke.com.
               </p>
             </Reveal>
 
@@ -568,9 +588,9 @@ export default function App() {
                 <h2 id="design-title">Interfaces I’ve designed</h2>
               </div>
               <p className="section-note">
-                Working recreations of real screens from five of my products — web components,
-                a fleet dashboard and three mobile apps. Click, type and filter; they respond like
-                the originals.
+                Working recreations of real screens from six products — the CoreLuke design system,
+                web components, a fleet dashboard and three mobile apps. Click, type, filter and
+                switch theme; they respond like the originals.
               </p>
             </Reveal>
             <Design />

@@ -660,6 +660,12 @@
   border-top: 1px solid var(--line);
 }
 
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .stack-list {
   display: flex;
   flex-wrap: wrap;
@@ -1265,6 +1271,35 @@
   max-width: 38rem;
   font-size: 1.1rem;
   color: var(--muted);
+}
+
+.dialog-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+
+.dialog-live svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dialog-live:hover {
+  background: var(--accent);
+  color: var(--accent-fg);
 }
 
 .facts {
