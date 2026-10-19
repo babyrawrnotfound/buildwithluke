@@ -41,6 +41,48 @@ export const projects = [
     hue: 240,
   },
   {
+    id: 'coreluke',
+    name: 'CoreLuke',
+    category: 'system',
+    live: 'https://core.buildwithluke.com/',
+    platform: 'Design system + 30 workspaces',
+    client: 'Public product · buildwithluke',
+    tagline: 'Thirty ready-made workspaces with AI, 3D and flows you can actually run.',
+    summary:
+      'A Bootstrap 5 design system and workspace kit, published at core.buildwithluke.com. One app shell — sidebar, top bar, light and dark tokens — and thirty starter workspaces that share the same components, module engine and sample data. Nothing in the kit needs a build step.',
+    problem:
+      'Every new internal product was rebuilding the same shell: navigation, theme, tables, empty states and sign-in. Client work needed a system that could be copied into a project and themed from one config, instead of restyled page by page.',
+    highlights: [
+      '30 workspaces on one shell, light and dark',
+      'Module engine for KPIs, boards and tables',
+      'POS → kitchen, logistics, finance and venue flows',
+      'Public library at core.buildwithluke.com',
+    ],
+    features: [
+      'App shell with sidebar, top bar, theme toggle and a Ctrl K command palette',
+      'Module definitions that draw KPIs, a board or a table — a new screen does not need a new layout',
+      'Flagship flows: POS to a live kitchen display, warehouse scanner, venue booking and a double-entry journal',
+      'Three login templates (split, card, workspace gate) and a phone shell on the same tokens',
+      'Security Assurance screens that separate the in-browser demo from the production control',
+      'Catalogues for colour, type, motion, tables, forms and empty states, playable on the library page',
+    ],
+    engineering: [
+      'Plain HTML, CSS and JavaScript — serve the folder and open it',
+      'Components read CSS variables (--sp-primary and the rest); theme colours are not hard-coded',
+      'View Transitions between pages, with a short fade when the browser does not support them',
+      'prefers-reduced-motion turns the motion off and shows the final state',
+      'Shared records across a flow (POS, kitchen, scanner) live in one small store',
+      'Brand, currency and the signed-in user are one object, SP_CONFIG, in app-data.js',
+    ],
+    stats: [
+      { value: '30', label: 'Workspaces' },
+      { value: '2', label: 'Themes' },
+      { value: 'Live', label: 'Public library' },
+    ],
+    stack: ['Bootstrap 5', 'CSS tokens', 'Vanilla JS', 'Inter'],
+    hue: 222,
+  },
+  {
     id: 'fmd',
     name: 'Fleet Management Dashboard',
     category: 'system',
