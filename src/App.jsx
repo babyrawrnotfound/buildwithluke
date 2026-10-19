@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { approach, capabilities, projects, security } from './data.js'
+import { approach, capabilities, profile, projects, security } from './data.js'
 import { Icon } from './designKit.jsx'
 import Design from './Design.jsx'
 import './App.css'
@@ -7,7 +7,10 @@ import './App.css'
 const EMAIL = 'muhdluqman3045@gmail.com'
 const YEAR = new Date().getFullYear()
 
+const GITHUB = 'https://github.com/babyrawrnotfound'
+
 const nav = [
+  { id: 'profile', label: 'Profile' },
   { id: 'work', label: 'Work' },
   { id: 'design', label: 'Design' },
   { id: 'security', label: 'Security' },
@@ -457,9 +460,9 @@ export default function App() {
                 I build the systems <span className="accent-text">businesses run on.</span>
               </h1>
               <p className="lede">
-                Full-stack developer in Malaysia. I design and ship business platforms, mobile apps
-                and the Linux infrastructure behind them — from the first database table to the
-                production server.
+                Full-stack developer in Kuala Lumpur. I design and ship business platforms, mobile
+                apps and the Linux infrastructure behind them — from the first database table to
+                the production server.
               </p>
               <div className="hero-actions">
                 <a className="btn btn-primary" href="#work">
@@ -478,7 +481,10 @@ export default function App() {
               </div>
               <div className="terminal-body">
                 <p><span className="prompt">$</span> whoami</p>
-                <p className="out">luke — full-stack &amp; systems developer</p>
+                <p className="out">
+                  {profile.name}
+                  <span className="out-sub">Luke · {profile.location}</span>
+                </p>
                 <p><span className="prompt">$</span> ls ~/shipped</p>
                 <ul className="out ls">
                   {projects.map((p) => (
@@ -515,6 +521,60 @@ export default function App() {
                 <span>End-to-end ownership</span>
               </li>
             </ul>
+          </div>
+        </section>
+
+        <section className="section section-alt" id="profile" aria-labelledby="profile-title">
+          <div className="container">
+            <div className="profile-grid">
+              <Reveal>
+                <p className="eyebrow">Profile</p>
+                <h2 id="profile-title">{profile.name}</h2>
+                <p className="profile-role">
+                  {profile.knownAs} · {profile.location}
+                </p>
+                <div className="profile-copy">
+                  {profile.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+                <dl className="profile-facts">
+                  {profile.facts.map((fact) => (
+                    <div key={fact.label}>
+                      <dt>{fact.label}</dt>
+                      <dd>{fact.value}</dd>
+                    </div>
+                  ))}
+                  <div>
+                    <dt>GitHub</dt>
+                    <dd>
+                      <a href={GITHUB}>babyrawrnotfound</a>
+                    </dd>
+                  </div>
+                </dl>
+              </Reveal>
+
+              <Reveal as="ol" className="timeline" delay={80}>
+                {profile.timeline.map((item) => (
+                  <li key={item.title}>
+                    <time>{item.when}</time>
+                    <div className="tl-body">
+                      <h3>{item.title}</h3>
+                      <p>{item.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </Reveal>
+            </div>
+
+            <Reveal className="profile-record">
+              <p>From the same record</p>
+              <ul>
+                {profile.record.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </section>
 
@@ -688,7 +748,7 @@ export default function App() {
 
       <footer className="footer">
         <div className="container footer-inner">
-          <span>© {YEAR} Luke · buildwithluke.com</span>
+          <span>© {YEAR} {profile.name} · buildwithluke.com</span>
           <span>Self-hosted on a Linux VPS I set up and run.</span>
         </div>
       </footer>

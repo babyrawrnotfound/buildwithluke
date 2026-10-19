@@ -1,3 +1,58 @@
+export const profile = {
+  name: 'Muhammad Luqman Nulhakimm',
+  knownAs: 'Luke',
+  location: 'Kuala Lumpur',
+  paragraphs: [
+    'I design and ship the systems further down this page: device monitoring, a service desk, fleet compliance, asset registers and warehouse apps, and the Linux servers they run on.',
+    'My degree is in software engineering from UniKL MIIT, completed in March 2025. Before that I finished a vocational diploma in web application in Johor Bahru, and I kept a Petronas station running in Saleng while I was studying.',
+  ],
+  facts: [
+    { label: 'Based in', value: 'Kuala Lumpur, Malaysia' },
+    { label: 'Degree', value: 'BIT (Hons) Software Engineering, UniKL MIIT' },
+    { label: 'Result', value: 'Second Class Upper · CGPA 3.12 · March 2025' },
+    { label: 'Diploma', value: 'Vocational IT & Web Application · CGPA 3.61' },
+    { label: 'Languages', value: 'Bahasa Melayu, English' },
+  ],
+  timeline: [
+    {
+      when: '2025 — now',
+      title: 'Client systems',
+      body: 'The case studies on this site — IT operations, fleet compliance, assets and warehouse scanning — built and run for a Malaysian logistics group.',
+    },
+    {
+      when: '2024',
+      title: 'Industrial training',
+      body: 'Final-semester placement at Securiforce Logistic Sdn Bhd, inside a road-transport operation.',
+    },
+    {
+      when: '2021 — 2025',
+      title: 'UniKL MIIT',
+      body: 'Bachelor of Information Technology (Hons) in Software Engineering. Final-year project: Breeze and Blossom, an IoT laundrette web app for hostel students.',
+    },
+    {
+      when: '2020 — 2023',
+      title: 'Petronas Saleng',
+      body: 'Station manager in Johor, alongside the degree. Also part-time work at UniKL in human resources, graphic design and silat coaching.',
+    },
+    {
+      when: '2020',
+      title: 'Infinite Loop Media',
+      body: 'Web-design internship, February to July. Client sites included Global Immigration Sg and YTK Management Consultant Sg.',
+    },
+    {
+      when: '2017 — 2020',
+      title: 'Kolej Vokasional Perdagangan',
+      body: 'Diploma in Vocational Information Technology and Web Application, Johor Bahru. Final-year project: an inventory system for the IT department.',
+    },
+  ],
+  record: [
+    'Cisco IT Essentials',
+    'Cisco Introduction to Cybersecurity',
+    'Google Project Management, Coursera',
+    '1st place, KV Skill Competition — Web Design & Web Programming',
+  ],
+}
+
 export const projects = [
   {
     id: 'itsuite',
